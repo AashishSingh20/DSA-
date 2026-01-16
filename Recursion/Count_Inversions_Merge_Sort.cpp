@@ -1,0 +1,91 @@
+// Inversion Rule:- i<j and arr[i]>arr[j] (Index chhota hona chahiye pehle wale element ka & element bada hoga toh inversion hoga pehle wala)
+
+#include<iostream>
+using namespace std;
+
+int Countmerge(int *arr, int s, int e){
+
+// Diving and copying of main array into further arrays START!! 
+    int mid = s+(e-s)/2;
+
+    int len1 = mid-s+1;   // This is the length of 1st array out of 2
+    int len2 = e-mid;    // This the the length of 2nd array out of 2
+
+    int *first = new int[len1];   // Here 1st array is created
+    int *second = new int[len2];  // Here 2nd array is created
+
+    int k=s;    // Keeps track ki kitne elements konse array mein copy karna hai(k = main Array Index)
+    for(int i=0;i<len1;i++){
+        first[i] = arr[k++];   // Elements from arr are being copied into first array till mid
+    }
+
+    k=mid+1;   // Now k becomes mid+1 as elements till mid are copied into first
+    for(int i=0;i<len2;i++){
+        second[i] = arr[k++];   // Elements from arr are being copied into second array from mid+1 till last
+    }
+// Dividing and copying DONE!
+
+    int count = 0;  // Counts the number of Inversions
+// Creating 2 sorted Arrays by Merging  START!
+    int index1 = 0;
+    int index2 = 0;
+    k = s;
+
+    while(index1 < len1 && index2 < len2){   // Loop First Array until len1 and Second Array until len2
+        if(first[index1] <= second[index2]){  // If element of 1st Array is smaller than element of 2nd Array then put first array's element in the merged sorted Array
+            arr[k++] = first[index1++];  
+        }
+        else{    // If element of 2nd Array is smaller than element of 1st Array then put second array's element in the merged sorted Array
+            arr[k++] = second[index2++];
+            count += len1-index1;  // In 1st iteration count =(Eg:-  6 5 4 3 2 1, len1 = 3 index1 = 0 so count = 3-0 = 3 then index goes on increasing)
+        }
+    }
+
+    while(index1 < len1){   // Put left out elements of 1st array in arr
+        arr[k++] = first[index1++];
+    }
+    while(index2 < len2){  // Put left out elements of 2nd array in arr
+        arr[k++] = second[index2++];
+    }
+
+    
+    delete[]first;   // Free Memory
+    delete[]second;  
+    return count;   // Gives the count 
+}
+
+int mergeSort(int *arr, int s, int e){
+    int count = 0;
+    if(s<e){
+        int mid = s+(e-s)/2;
+        
+        count += mergeSort(arr,s,mid);  // Left part sort karega  // Left part ka inversion dega
+        count += mergeSort(arr,mid+1,e);  // Right part sort karega  // Right Part ka inversion count dega
+        
+        count += Countmerge(arr,s,e);   // Yeh Array ko divide karke naya sorted Array banaega  // Total Count dega array merge karte time
+    }
+    return count;  // Returns the total inversion count
+}
+
+int main(){
+    int n;
+    cout<<"Enter Array size: ";
+    cin>>n;
+    int *arr = new int[n];  // Creating Array Dynamically
+
+    cout<<"Enter Elements: ";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    
+    int count = mergeSort(arr,0,n-1);
+    
+    cout<<"Sorted Elements: ";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    
+    cout<<"Number of Inversions in the Array: "<<count<<endl;
+
+    delete[]arr;
+}
