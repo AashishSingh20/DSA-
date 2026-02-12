@@ -7,6 +7,9 @@ Beginners can try to learn and solve various Questions with the help of this Rep
 
 Topics Covered:
 - Arrays
+- 2D Arrays
+- Strings
+- Sorting Algorithms
 - Linked List
 - Stack & Queue
 - Trees (BinaryTree, BST)
