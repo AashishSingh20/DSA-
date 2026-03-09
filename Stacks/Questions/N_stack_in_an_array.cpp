@@ -16,28 +16,29 @@ class NStack{
             n = N;    // n is the size of the array
             s = S;    // s is the number of stacks
 
-            arr = new int[s];   // arr banao s size ka(yeh main array hai)
-            top = new int[n];  // top naam ka bhi ek array banao s size ka yeh har stack ke top element ko store karega
-            next = new int[s];  // next naam ka ek array banao joh d kaam karega(if next space is empty it will point to next free space or if next space is full then it will tell next element after stack top)
+            arr = new int[n];   // arr banao s size ka(yeh main array hai)
+            top = new int[s];  // top naam ka bhi ek array banao s size ka yeh har stack ke top element ko store karega
+            next = new int[n];  // next naam ka ek array banao joh d kaam karega(if next space is empty it will point to next free space or if next space is full then it will tell next element after stack top)
 
             // Initialize top
-            for(int i=0;i<n;i++){   // Initially top mei sab -1 put kardo
+            for(int i=0;i<s;i++){   // Initially top mei sab -1 put kardo
                 top[i] = -1;
             }
 
             // Initialize next
-            for(int i=0;i<s;i++){  // next mein i+1 karke elements initialize karte jao
+            for(int i=0;i<n;i++){  // next mein i+1 karke elements initialize karte jao
                 next[i] = i+1;
             }
 
             // Update last index value to -1   // Last index of next will have -1 stored as there is no free space after it
-            next[s-1] = -1;
+            next[n-1] = -1;
 
             // Initialize freespot
             freespot = 0;    // Intitially value of freespot is 0
         }
 
         bool push(int x, int m){
+            if(m <= 0 || m > s) return;
             // check for overflow
             if(freespot == -1){   // If freespot is -1 matlab there is no free space(OverfLow) we are at the end of next
                 return false;   // so return false

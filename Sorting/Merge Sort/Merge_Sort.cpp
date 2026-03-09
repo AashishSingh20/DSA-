@@ -2,9 +2,8 @@
 using namespace std;
 
 void merge(int *arr, int s, int e){
-
 // Diving and copying of main array into further arrays START!! 
-    int mid = s+(e-s)/2;
+    int mid = s+(e-s)/2;  // Calculates mid 
 
     int len1 = mid-s+1;   // This is the length of 1st array out of 2
     int len2 = e-mid;    // This the the length of 2nd array out of 2

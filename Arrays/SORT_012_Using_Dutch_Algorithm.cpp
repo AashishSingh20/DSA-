@@ -38,22 +38,22 @@ void Array::Display(){
 }
 
 void Array::Sort012(int arr[]){
-	int low=0;
-	int mid=0;
-	int high=length-1;
+	int low=0;  // Low ko initially 0 par set karo
+	int mid=0;   // mid ko bhi 0 par set karo
+	int high=length-1;   // high ko last mein set karo
 	
-	while(mid<=high){
-		if(A[mid]==0){
-			swap(A[mid],A[low]);
-			low++;
-			mid++;
+	while(mid<=high){   // jabtak mid high ke kam yaa barabar hai tabtak loop
+		if(A[mid]==0){   // Agar mid ka element '0' nikal gaya then 
+			swap(A[mid],A[low]);  // swap low with mid element
+			low++;  // low ko aage badhado since first element is sorted
+			mid++;  // mid ko bhi badhado  since first element has been sorted
 		}
-		else if(A[mid]==1){
+		else if(A[mid]==1){  // Agar mid 1 ke barabar aa gaya then mid ko aage badha do lo ko wahi rehne do
 			mid++;
 		}
 		else{
-			swap(A[mid],A[high]);
-			high--;
+			swap(A[mid],A[high]);  // Aur agar mid '2' aa gaya then high se usko swap mardo
+			high--;  // aur high ko aage badhado kyuki last element has already become sorted
 		}
 	}
 }

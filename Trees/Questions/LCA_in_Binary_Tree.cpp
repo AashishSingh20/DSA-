@@ -57,7 +57,7 @@ Node* lca(Node* root, int n1, int n2){
         return NULL;
     }
 
-    // Agar n1 yaa n2 kuch bhi mil jaye toh return oneself
+    // Agar n1 yaa n2 kuch bhi mil jaye toh return ownself
     if(root->data == n1 || root->data == n2){
         return root;
     }

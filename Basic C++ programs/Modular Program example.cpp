@@ -19,7 +19,7 @@ int main()
    int a = area(length,breadth);
    int peri = perimeter(length, breadth);
    
-   cout<<"Area of Rxectangle is:"<<a<<endl;
+   cout<<"Area of Rectangle is:"<<a<<endl;
    cout<<"Perimeter of Rectangle is:"<<peri;
    
    return 0;

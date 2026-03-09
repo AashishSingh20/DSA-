@@ -111,5 +111,5 @@ int main(){
 
     root = LCA(root,n1,n2);
 
-    cout<<"The lca of n1 and n2 is: "<<root->data<<endl;
+    cout<<"The LCA of n1 and n2 is: "<<root->data<<endl;
 }   

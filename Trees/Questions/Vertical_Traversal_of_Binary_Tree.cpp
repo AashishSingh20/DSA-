@@ -76,15 +76,18 @@ vector<int> verticalOrder(Node* &root){
         // insert data at frontNode in the map
         nodes[hd][level].push_back(frontNode->data);
 
+        // Check if leftNode exists then push in queue
         if(frontNode->left != NULL){
             q.push(make_pair(frontNode->left,make_pair(hd-1,level+1)));
         }
 
+        // Same check for right Node
         if(frontNode->right != NULL){
             q.push(make_pair(frontNode->right,make_pair(hd+1,level+1)));
         }
     }
 
+    // Now put all ouputs in ans and return
     for(auto i: nodes){
         for(auto j: i.second){
             for(auto k: j.second){

@@ -71,8 +71,8 @@ pair<bool,int> isBalancedFast(Node* root){
         return p;   // Agar Root NUll hua toh true return ho jayega
     }
 
-    pair<bool,int> left = isBalancedFast(root->left);  // calculates height of left subtree and gives true or false
-    pair<bool,int> right = isBalancedFast(root->right);  // calculates height of right subtree and gives true or false
+    pair<bool,int> left = isBalancedFast(root->left);  // calculates height of left subtree and gives true or false along with height
+    pair<bool,int> right = isBalancedFast(root->right);  // calculates height of right subtree and gives true or false along with height
 
     bool leftAns = left.first;    // stores bool we have got from left in leftAns
     bool rightAns = right.first;  // stores bool we have got from right in rightAns

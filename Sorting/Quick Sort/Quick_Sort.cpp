@@ -2,30 +2,30 @@
 using namespace std;
 
 int partition(int *arr, int s, int e){
-    int pivot = arr[s];  // 1st element ko ham pivot man lete hai
+    int pivot = arr[e];  // Last element ko ham pivot man lete hai
 
     int count = 0;  // Counts how many numbers are smaller than pivot
-    for(int i=s+1;i<=e;i++){  // Loop from s+1 to e
+    for(int i=s;i<e;i++){  // Loop from s to e
         if(arr[i] < pivot){  // If element is smaller than pivot then increment the count
             count++; 
         }
     }
 
     int pivotIndex = s + count;    // New Index of pivot after placing it at correct position
-    swap(arr[s],arr[pivotIndex]);   // Placing pivot at its correct position by swapping
+    swap(arr[e],arr[pivotIndex]);   // Placing pivot at its correct position by swapping
 
     int i = s;   // Starting index to traverse left side of the pivot
     int j = e;   // Starting index to traverse right side of the pivot
 
     while(i < pivotIndex && j > pivotIndex){   // Loop until i reaches pivotIndex and j reaches pivotIndex
-        while(arr[i] < pivot){   // increment i until element at i is smaller than pivot
+        while(i < pivotIndex && arr[i] < pivot){   // increment i until element at i is smaller than pivot
             i++;
         }
-        while(arr[j] > pivot){  // decrement j until element at j is greater than pivot
+        while(j > pivotIndex && arr[j] >= pivot){  // decrement j until element at j is greater than pivot
             j--;
         }
 
-        if(i < pivotIndex && j > pivotIndex){  // If i and j have not crossed pivotIndex than swap the elements at i and j if they are out of place
+        if(i < pivotIndex && j >= pivotIndex){  // If i and j have not crossed pivotIndex than swap the elements at i and j if they are out of place
             swap(arr[i++],arr[j--]);    // Agar elements apni jagah pe nahi hai to swap kar do
         }
     }
@@ -35,13 +35,13 @@ int partition(int *arr, int s, int e){
 
 void quickSort(int *arr, int s, int e){
     
-    if(s >= e){
+    if(s >= e){  // Agar start end se bada ho gaya toh return kardo
         return;
     }
 
     int p = partition(arr,s,e);  // Partition Karenge
 
-    quickSort(arr,s,p-1);  // Left wala part sort karo  
+    quickSort(arr,s,p-1);  // Left wala part sort karo 
     quickSort(arr,p+1,e);  // Right wala part sort karo
 }
 

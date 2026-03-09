@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int numdigit(int n){
+int numdigit(int n){  // Counts the number of digits in the given number 
 	int count = 0;
 	while(n!=0){
 		n = n/10;
@@ -23,7 +23,7 @@ int main(){
 	cout<<"Enter a number: ";
 	cin>>n;
 	int num = n;
-	int a = numdigit(num);
+	int a = numdigit(num); 
 	cout<<"Number of digits are: "<<a<<endl;
 	int sum = 0;
 	while(n!=0){
